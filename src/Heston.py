@@ -7,12 +7,20 @@ from src.utils.monte_carlo_approximation import monte_carlo_approximation
 class Heston:
 
     @staticmethod
-    def get_put_price():
-        pass
+    def get_put_price(S0: float, v0: float, K: float, r: float, q: float,
+                        kappa: float, theta: float, sigma_v: float,
+                        rho: float, T: float, N: int = 252, num_paths: int = 1) -> float:
+
+        return monte_carlo_approximation(K, r, T, "put",
+                                         Heston._simulate_paths(S0, v0, r, q, kappa, theta, sigma_v, rho, T, N, num_paths))
 
     @staticmethod
-    def get_call_price():
-        pass
+    def get_call_price(S0: float, v0: float, K: float, r: float, q: float,
+                        kappa: float, theta: float, sigma_v: float,
+                        rho: float, T: float, N: int = 252, num_paths: int = 1) -> float:
+
+        return monte_carlo_approximation(K, r, T, "call",
+                                         Heston._simulate_paths(S0, v0, r, q, kappa, theta, sigma_v, rho, T, N, num_paths))
 
     @staticmethod
     def _simulate_paths(S0: float, v0: float, r: float, q: float,
