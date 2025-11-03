@@ -15,5 +15,5 @@ class OptionParams:
     volatility_volatility: float = 0.0 # sigma_v
 
     # Simulation Specific
-    num_paths: int = 100
-    time_step: float = 252
+    num_paths: int = 10000
+    time_step: int = 252

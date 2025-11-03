@@ -1,15 +1,15 @@
 import numpy as np
 
 from scipy.stats import norm
+from typing import Dict
 
 from src._params import OptionParams
-from src.pricing_models.BaseModel import BaseModel
-from src.utils.geometric_brownian_motion import simulate_geometric_brownian_motion
+from src._utils import simulate_geometric_brownian_motion
 
-class BlackScholesMerton(BaseModel):
+class BlackScholesMerton:
 
     @staticmethod
-    def _get_put_price(strike: float,
+    def closed_form_put(strike: float,
                         spot_price: float,
                         time_to_expiry: float,
                         risk_free_rate: float,
@@ -26,11 +26,11 @@ class BlackScholesMerton(BaseModel):
         return put_price
 
     @staticmethod
-    def _get_call_price(strike: float,
-                        spot_price: float,
-                        time_to_expiry: float,
-                        risk_free_rate: float,
-                        params: OptionParams) -> float:
+    def closed_form_call(strike: float,
+                         spot_price: float,
+                         time_to_expiry: float,
+                         risk_free_rate: float,
+                         params: OptionParams) -> float:
 
         d1 = (np.log(spot_price / strike) + (risk_free_rate + 0.5 * params.variance ** 2)
               * time_to_expiry) / (params.variance * np.sqrt(time_to_expiry))
@@ -43,14 +43,18 @@ class BlackScholesMerton(BaseModel):
         return call_price
 
     @staticmethod
-    def _simulate_paths(spot_price: float,
+    def simulate_paths(spot_price: float,
                         time_to_expiry: float,
                         risk_free_rate: float,
-                        params: OptionParams) -> np.ndarray:
+                        params: OptionParams) -> Dict[str, np.ndarray]:
 
-        return  simulate_geometric_brownian_motion(spot_price,
-                                                   risk_free_rate,
-                                                   params.variance,
-                                                   time_to_expiry,
-                                                   params.time_step,
-                                                   params.num_paths)
+        paths = {}
+
+        paths['Price'] = simulate_geometric_brownian_motion(spot_price,
+                                                            risk_free_rate,
+                                                            params.variance,
+                                                            time_to_expiry,
+                                                            params.time_step,
+                                                            params.num_paths)
+
+        return paths
