@@ -3,7 +3,7 @@ import numpy as np
 from scipy.stats import norm
 
 from src._params import OptionParams
-from src.utils.BaseModel import BaseModel
+from src.pricing_models.BaseModel import BaseModel
 from src.utils.geometric_brownian_motion import simulate_geometric_brownian_motion
 
 class BlackScholesMerton(BaseModel):

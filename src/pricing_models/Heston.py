@@ -3,7 +3,7 @@ import numpy as np
 from typing import Tuple
 
 from src._params import OptionParams
-from src.utils.BaseModel import BaseModel
+from src.pricing_models.BaseModel import BaseModel
 from src.utils.monte_carlo_approximation import monte_carlo_approximation
 
 class Heston(BaseModel):

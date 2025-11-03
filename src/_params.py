@@ -3,17 +3,17 @@ from dataclasses import dataclass
 @dataclass
 class OptionParams:
 
-    # Black Scholes Merton Specific
-    variance: float
+    # Black-Scholes-Merton Specific
+    variance: float = 0.0
 
     # Heston Specific
-    initial_variance : float # v_0
-    dividend_yield: float # q
-    mean_reversion_speed: float # kappa
-    long_term_variance: float # theta
-    correlation: float # rho
-    volatility_volatility: float # sigma_v
+    initial_variance : float = 0.0 # v_0
+    dividend_yield: float  = 0.0 # q
+    mean_reversion_speed: float = 0.0 # kappa
+    long_term_variance: float = 0.0 # theta
+    correlation: float = 0.0 # rho
+    volatility_volatility: float = 0.0 # sigma_v
 
-    # Optional
+    # Simulation Specific
     num_paths: int = 100
     time_step: float = 252
