@@ -13,6 +13,7 @@ from src.engines.AnalyticalEngine import AnalyticalEngine
 from src.engines.MonteCarloEngine import MonteCarloEngine
 
 if __name__ == "__main__":
+
     # Parameters
     options_kwargs = OptionParams()
 
@@ -26,7 +27,7 @@ if __name__ == "__main__":
 
 
     spot_price = 100  # Current stock price
-    strike_price = np.array([105, 110, 115], dtype=float)
+    strike_price = np.array([90, 95, 100, 105, 110, 115, 120], dtype=float)
     time_to_expiry = 1.0
     risk_free_rate = 0.05
 

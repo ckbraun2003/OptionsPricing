@@ -15,7 +15,7 @@ class AnalyticalEngine:
               params: OptionParams) -> Tuple[Union[float, np.ndarray], Union[float, np.ndarray]]:
 
         if type(strike) is np.ndarray:
-            return np.zeroes(strike.shape), np.zeroes(strike.shape) # ADD LATER
+            return np.zeros(strike.shape), np.zeros(strike.shape) # ADD LATER
 
         call_price = model.closed_form_call(strike, spot_price, time_to_expiry, risk_free_rate, params)
         put_price = model.closed_form_put(strike, spot_price, time_to_expiry, risk_free_rate, params)
