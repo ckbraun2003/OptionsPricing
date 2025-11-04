@@ -15,10 +15,10 @@ class BlackScholesMerton:
                         risk_free_rate: float,
                         params: OptionParams) -> float:
 
-        d1 = (np.log(spot_price / strike) + (risk_free_rate + 0.5 * params.variance ** 2)
-              * time_to_expiry) / (params.variance * np.sqrt(time_to_expiry))
+        d1 = (np.log(spot_price / strike) + (risk_free_rate + 0.5 * params.volatility ** 2)
+              * time_to_expiry) / (params.volatility * np.sqrt(time_to_expiry))
 
-        d2 = d1 - params.variance * np.sqrt(time_to_expiry)
+        d2 = d1 - params.volatility * np.sqrt(time_to_expiry)
 
         put_price = (strike * np.exp(-risk_free_rate * time_to_expiry)
                      * norm.cdf(-d2) - spot_price * norm.cdf(-d1))
@@ -32,10 +32,10 @@ class BlackScholesMerton:
                          risk_free_rate: float,
                          params: OptionParams) -> float:
 
-        d1 = (np.log(spot_price / strike) + (risk_free_rate + 0.5 * params.variance ** 2)
-              * time_to_expiry) / (params.variance * np.sqrt(time_to_expiry))
+        d1 = (np.log(spot_price / strike) + (risk_free_rate + 0.5 * params.volatility ** 2)
+              * time_to_expiry) / (params.volatility * np.sqrt(time_to_expiry))
 
-        d2 = d1 - params.variance * np.sqrt(time_to_expiry)
+        d2 = d1 - params.volatility * np.sqrt(time_to_expiry)
 
         call_price = (spot_price * norm.cdf(d1) - strike
                       * np.exp(-risk_free_rate * time_to_expiry) * norm.cdf(d2))
@@ -52,7 +52,7 @@ class BlackScholesMerton:
 
         paths['Price'] = simulate_geometric_brownian_motion(spot_price,
                                                             risk_free_rate,
-                                                            params.variance,
+                                                            params.volatility,
                                                             time_to_expiry,
                                                             params.time_step,
                                                             params.num_paths)

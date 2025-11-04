@@ -30,7 +30,7 @@ class Heston:
             v_prev = v[i - 1]
             sqrt_v_prev = np.sqrt(np.maximum(v_prev, 0.0))
             dv = (params.mean_reversion_speed * (params.long_term_variance - np.maximum(v_prev, 0.0))
-                  * dt + params.volatility_volatility * sqrt_v_prev * dW2)
+                  * dt + params.volatility_variance * sqrt_v_prev * dW2)
 
             v_new = v_prev + dv
             v_new = np.maximum(v_new, 0.0)
@@ -43,5 +43,5 @@ class Heston:
             v[i] = v_new
 
         paths['Price'] = S
-        paths['Volatility'] = v
+        paths['Variance'] = v
         return paths

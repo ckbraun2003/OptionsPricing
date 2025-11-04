@@ -43,3 +43,10 @@ class MonteCarloEngine:
 
     def reset(self) -> None:
         self._simulator.reset()
+
+    def plot_paths(self,
+                   title_prefix: str = 'Paths -- ',
+                   xlabel: str = 'Time Steps',
+                   ylabel: str = 'Value') -> None:
+
+        self._simulator.plot_paths(title_prefix, xlabel, ylabel)
